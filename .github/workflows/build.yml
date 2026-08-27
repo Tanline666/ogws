@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    container: ghcr.io/Tanline666/ogws-build:main
+    container: ghcr.io/tanline666/ogws-build:main
 
     runs-on: ubuntu-latest
     strategy:
