@@ -15,6 +15,61 @@
 //! @{
 
 /**
+ * @brief Pack Project configuration data. Derives from EGG::ConfigurationData.
+ */
+
+class RPSysConfigData {
+public:
+    explicit RPSysConfigData(u32 systemHeapSize)
+        : mSystemHeapSize(systemHeapSize) {}
+
+    virtual EGG::Video* GetVideo() {
+        return mVideo;
+    } 
+    virtual EGG::Heap* GetSystemHeap() {
+        return mSystemHeap;
+    }
+    virtual EGG::Display* GetDisplay() {
+        return mDisplay;
+    }
+    virtual EGG::XfbManager* GetXfbMgr() {
+        return mXfbMgr;
+    }
+    virtual EGG::PerformanceView* GetPerfView() {
+        return mPerfView;
+    }
+    virtual EGG::SceneManager* GetSceneMgr() {
+        return mSceneMgr;
+    }
+    virtual EGG::IAudioMgr* GetAudioMgr() {
+        return mAudioMgr;
+    }
+    virtual void StubA() {}
+    virtual void StubB() {}
+private:
+    void* mMem1Start;
+    void* mMem1End;
+    void* mMem2Start;
+    void* mMem2End;
+    u32 mMemSize;
+    EGG::Heap *mRootHeapMem1;
+    EGG::Heap *mRootHeapMem2;
+    EGG::Heap *mRootHeapDebug;
+protected:
+    EGG::Heap* mSystemHeap;
+    EGG::Thread* mCreatorThread;
+    void* mCodeStart;
+    void* mCodeEnd;
+    u32 mSystemHeapSize;
+    EGG::Video *mVideo;
+    EGG::XfbManager *mXfbMgr;
+    EGG::Display *mDisplay;
+    EGG::PerformanceView *mPerfView;
+    EGG::SceneManager *mSceneMgr;
+    EGG::IAudioMgr *mAudioMgr;
+};
+
+/**
  * @brief Pack Project engine system
  */
 class RPSysSystem {
@@ -311,7 +366,7 @@ private:
     char* mpTimeStampString; // at 0x58
 
     //! Engine configuration
-    // static RPSysConfigData sConfigData;
+    static RPSysConfigData sConfigData;
 
     //! Active render mode
     static GXRenderModeObj* spRenderModeObj;
