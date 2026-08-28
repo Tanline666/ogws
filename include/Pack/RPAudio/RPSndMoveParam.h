@@ -132,11 +132,11 @@ public:
 
 private:
     //! Sound handle
-    nw4r::snd::SoundHandle& mrHandle; // at 0x24
+    nw4r::snd::SoundHandle& mrHandle; // at 0x28
     //! Sound parameter category
-    ParamCategory mCategory; // at 0x28
+    ParamCategory mCategory; // at 0x2C
     //! Sequence sound track flags
-    u32 mTrackFlags; // at 0x2C
+    u32 mTrackFlags; // at 0x30
 };
 
 /******************************************************************************
