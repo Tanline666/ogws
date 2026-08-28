@@ -9,7 +9,6 @@
 
 #include <nw4r/ut.h>
 
-#include "revolution/OS/OSStateTM.h"
 #include <revolution/GX.h>
 #include <revolution/OS.h>
 
@@ -237,7 +236,7 @@ public:
     /**
      * @brief Initializes the load count to zero frames
      */
-    void startLoadCount();
+    void startLoadCount(RPSysSystem* pSystem);
     /**
      * @brief Tests whether the current load count is over five seconds (600f)
      */
@@ -355,7 +354,7 @@ private:
     //! Task-end thread message for asynchronous NAND operations
     u32 mNandEndMessage; // at 0x40
     //! Task-end thread message for asynchronous disc operations
-    u32 mDvdEndMessage; // at 0x44
+    OSMessage mDvdEndMessage; // at 0x44
     //! Task-end thread message for asynchronous WiiConnect24 operations
     u32 mWc24EndMessage; // at 0x48
 

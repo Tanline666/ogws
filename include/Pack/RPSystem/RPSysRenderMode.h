@@ -1,9 +1,9 @@
 #ifndef RP_SYSTEM_RENDER_MODE_H
 #define RP_SYSTEM_RENDER_MODE_H
 
-#include <types.h>
+#include <Pack/types_pack.h>
 
-#include <egg/gfxe/eggScreen.h>
+#include <egg/gfxe.h>
 
 class RPSysRenderMode {
 public:

@@ -1,10 +1,10 @@
 #ifndef RP_KERNEL_HOME_MENU_MANAGER_H
 #define RP_KERNEL_HOME_MENU_MANAGER_H
 #include <Pack/types_pack.h>
-#include <RPSystem/RPSysProjectLocal.h>
+#include <Pack/RPSystem/RPSysProjectLocal.h>
 
 #include <Pack/RPSingleton.h>
-#include <homebuttonMiniLib/HBMTypes.h>
+#include <homebuttonMiniLib.h>
 
 //! @addtogroup rp_kernel
 //! @{

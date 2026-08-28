@@ -1,5 +1,5 @@
-#ifndef RP_SYSTEM_PAUSE_MANAGER_H
-#define RP_SYSTEM_PAUSE_MANAGER_H
+#ifndef RP_SYSTEM_PAUSE_MGR_H
+#define RP_SYSTEM_PAUSE_MGR_H
 
 #include <Pack/RPSingleton.h>
 
@@ -30,4 +30,4 @@ private:
 
 //! @}
 
-#endif // RP_SYSTEM_PAUSE_MANAGER_H
+#endif
