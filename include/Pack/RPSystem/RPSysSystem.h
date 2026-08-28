@@ -3,11 +3,13 @@
 #include <Pack/types_pack.h>
 
 #include <Pack/RPSystem/RPSysSceneCreator.h>
+#include <Pack/RPSystem/RPSysRenderMode.h>
 
 #include <egg/core.h>
 
 #include <nw4r/ut.h>
 
+#include "revolution/OS/OSStateTM.h"
 #include <revolution/GX.h>
 #include <revolution/OS.h>
 
@@ -263,7 +265,9 @@ public:
     /**
      * @brief Gets the thread for asynchronous disc operations
      */
-    EGG::TaskThread* getDvdThread();
+    EGG::TaskThread* getDvdThread() {
+        return mpDvdThread;
+    }
     /**
      * @brief Gets the thread for asynchronous WiiConnect24 operations
      */
@@ -370,8 +374,8 @@ private:
 
     //! Active render mode
     static GXRenderModeObj* spRenderModeObj;
-    //! Render mode format @see RPSysRenderMode::EFormat
-    // static u32 sRenderModeFormat;
+    //! Render mode format
+    static RPSysRenderMode::EFormat sRenderModeFormat;
     //! @brief Time (in milliseconds) when the render mode was setup
     //! @remark This value is only non-zero when scan mode/TV format is changed
     //! and the system must wait.

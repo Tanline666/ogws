@@ -1,6 +1,7 @@
 ﻿# IDE folders
 .idea/
 .vs/
+.vscode/
 
 # Caches
 __pycache__
@@ -34,3 +35,4 @@ compile_commands.json
 /*.txt
 *.exe
 *.DS_Store
+README.md

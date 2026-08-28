@@ -14,7 +14,7 @@
 [<img src="https://decomp.dev/doldecomp/ogws.svg?w=512&h=256" width="512" height="256" alt="A visual">][Progress]
 <!-- markdownlint-enable MD033 -->
 
-A work-in-progress decompilation of Wii Sports. This is a fork! Please see doldecomp/ogws for the main project.
+A work-in-progress decompilation of Wii Sports.
 
 > [!IMPORTANT]
 > This repository does **not** contain any game assets or assembly whatsoever.

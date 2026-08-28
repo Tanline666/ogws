@@ -34,7 +34,8 @@ public:
 
     RPSysScene* getCurrentSceneRP() const;
 
-    BOOL returnToMenu(BOOL pScreenOff);
+    void shutdownSystem(BOOL pBlack);
+    BOOL returnToMenu(BOOL pBlack);
     void softReset(BOOL pFade);
 
 private:
