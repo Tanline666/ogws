@@ -236,7 +236,7 @@ public:
     /**
      * @brief Initializes the load count to zero frames
      */
-    void startLoadCount(RPSysSystem* pSystem);
+    void startLoadCount();
     /**
      * @brief Tests whether the current load count is over five seconds (600f)
      */
