@@ -29,8 +29,8 @@ RPSysSceneCreator::ESceneID RPSysSystem::getBootScene() {
     return RPSysSceneCreator::ESceneID_RPSportsTitleScene;
 }
 
-void RPSysSystem::startLoadCount(RPSysSystem* pSystem) {
-    pSystem->mLoadCount = 0; // wrong register, should be r3 but this compiles to r4
+void RPSysSystem::startLoadCount() {
+    mLoadCount = 0; // wrong register, should be r3 but this compiles to r4
 }
 
 const char* RPSysSystem::getTimeStampString() {
