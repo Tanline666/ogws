@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <Pack/RPSystem.h>
 #include <Pack/RPKernel.h>
 #include <egg/core.h>
@@ -5,6 +6,17 @@
 #include <revolution/SC.h>
 #include <revolution/VI.h>
 #include <revolution/OS.h>
+=======
+#include <Pack/RPKernel.h>
+#include <Pack/RPSystem.h>
+
+#include <egg/core.h>
+#include <egg/gfxe.h>
+
+#include <revolution/OS.h>
+#include <revolution/SC.h>
+#include <revolution/VI.h>
+>>>>>>> db0412edb1fd26314c0b93d8edca922d734bcea5
 
 void RPSysSystem::setupTVMode() {
     int i;
@@ -18,19 +30,31 @@ void RPSysSystem::setupTVMode() {
     }
     if (SCGetAspectRatio() == SC_ASPECT_WIDE) {
         EGG::Screen::SetTVMode(EGG::Screen::TV_MODE_WIDE);
+<<<<<<< HEAD
     }
     else {
+=======
+    } else {
+>>>>>>> db0412edb1fd26314c0b93d8edca922d734bcea5
         EGG::Screen::SetTVMode(EGG::Screen::TV_MODE_STD);
     }
 }
 
 RPSysSceneCreator::ESceneID RPSysSystem::getBootScene() {
     // this function is hardcoded (symbol name is official, weirdly enough)
+<<<<<<< HEAD
     return RPSysSceneCreator::ESceneID_RPSportsTitleScene;
 }
 
 void RPSysSystem::startLoadCount(RPSysSystem* pSystem) {
     pSystem->mLoadCount = 0; // wrong register, should be r3 but this compiles to r4
+=======
+    return RPSysSceneCreator::ESceneID_RPSportsPackTitleScene;
+}
+
+void RPSysSystem::startLoadCount() {
+    mLoadCount = 0; // wrong register, should be r3 but this compiles to r4
+>>>>>>> db0412edb1fd26314c0b93d8edca922d734bcea5
 }
 
 const char* RPSysSystem::getTimeStampString() {
@@ -41,6 +65,7 @@ void RPSysSystem::setupLocalSettings() {
     u8 sysLanguage = SCGetLanguage();
 
     if (sysLanguage == SC_LANG_EN) {
+<<<<<<< HEAD
         RP_GET_INSTANCE(RPSysProjectLocal)->setLocale(RPSysProjectLocal::EArea_USA);
         RP_GET_INSTANCE(RPSysProjectLocal)->setLanguage(RPSysProjectLocal::EArea_USA);
     }
@@ -56,6 +81,29 @@ void RPSysSystem::setupLocalSettings() {
     else {
         RP_GET_INSTANCE(RPSysProjectLocal)->setLocale(RPSysProjectLocal::EArea_USA);
         RP_GET_INSTANCE(RPSysProjectLocal)->setLanguage(RPSysProjectLocal::EArea_USA);
+=======
+        RP_GET_INSTANCE(RPSysProjectLocal)
+            ->setLocale(RPSysProjectLocal::EArea_USA);
+        RP_GET_INSTANCE(RPSysProjectLocal)
+            ->setLanguage(RPSysProjectLocal::EArea_USA);
+    } else if (sysLanguage == SC_LANG_FR) {
+        RP_GET_INSTANCE(RPSysProjectLocal)
+            ->setLocale(RPSysProjectLocal::EArea_USA);
+        RP_GET_INSTANCE(RPSysProjectLocal)
+            ->setLanguage(RPSysProjectLocal::EArea_France);
+    } else if (sysLanguage == SC_LANG_SP) {
+        RP_GET_INSTANCE(RPSysProjectLocal)
+            ->setLocale(RPSysProjectLocal::EArea_USA);
+        RP_GET_INSTANCE(RPSysProjectLocal)
+            ->setLanguage(RPSysProjectLocal::EArea_Spain);
+    }
+    //! Requires ifdef for non Americas versions
+    else {
+        RP_GET_INSTANCE(RPSysProjectLocal)
+            ->setLocale(RPSysProjectLocal::EArea_USA);
+        RP_GET_INSTANCE(RPSysProjectLocal)
+            ->setLanguage(RPSysProjectLocal::EArea_USA);
+>>>>>>> db0412edb1fd26314c0b93d8edca922d734bcea5
     }
 }
 
@@ -63,7 +111,10 @@ void RPSysSystem::setupLocalSettings() {
  * @brief Controls whether the game restarts or returns to the Wii Menu upon a
  * soft reset.
  */
+<<<<<<< HEAD
 
+=======
+>>>>>>> db0412edb1fd26314c0b93d8edca922d734bcea5
 void RPSysSystem::softResetCallBack() {
     if (RP_GET_INSTANCE(RPSysDvdStatus)->isErrorOccured()) {
         RP_GET_INSTANCE(RPSysSceneMgr)->returnToMenu(FALSE);
