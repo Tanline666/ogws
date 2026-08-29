@@ -264,9 +264,7 @@ public:
     /**
      * @brief Gets the thread for asynchronous disc operations
      */
-    EGG::TaskThread* getDvdThread() {
-        return mpDvdThread;
-    }
+    EGG::TaskThread* getDvdThread();
     /**
      * @brief Gets the thread for asynchronous WiiConnect24 operations
      */
