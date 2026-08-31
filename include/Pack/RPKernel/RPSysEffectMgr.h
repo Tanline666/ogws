@@ -29,10 +29,14 @@ public:
     };
 
 public:
+    void createEffect(u32 pGroupID, u16 pCalcRemain, u32 pCreator);
     void stopAllEffect();
 
     void setCreator(RPSysEffectCreator* pCreator, u32 effectScene);
     void resetCreator(RPSysEffectCreator* pCreator);
+
+private:
+    RPSysEffectCreator* mEffectCreators[4]; // at 0x8
 };
 
 //! @}
