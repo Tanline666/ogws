@@ -22,6 +22,10 @@ public:
      */
     virtual ~RPSndHomeMenuArcMgr(); // at 0x8
 
+    static RPSndHomeMenuArcMgr* instance() {
+        return spInstance;
+    }
+
     /**
      * @brief Updates the state of the sound player
      */
@@ -36,6 +40,7 @@ public:
     bool setupArchive(const void* pBinary);
 
 private:
+    static RPSndHomeMenuArcMgr* spInstance;
     //! Active sound handle
     nw4r::snd::SoundHandle mSoundHandle; // at 0x6A4
     //! Whether the sound archive has been setup

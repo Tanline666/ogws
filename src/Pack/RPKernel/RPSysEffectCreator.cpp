@@ -50,9 +50,8 @@ void RPSysEffectCreator::nullCtor1() {}
 /**
  * @brief Gets mEffectSystem.
  */
-nw4r::ef::EffectSystem* RPSysEffectCreator::getEffectSystem() {
-    // no idea why this is even done, but this is a 100% match???
-    return (nw4r::ef::EffectSystem* )((-(int)mEffectSystem | (unsigned int)mEffectSystem) >> 31);
+bool RPSysEffectCreator::isSlowEffect() const {
+    return mEffectSystem != NULL;
 }
 
 /**
@@ -60,8 +59,8 @@ nw4r::ef::EffectSystem* RPSysEffectCreator::getEffectSystem() {
  * 
  * @details Function used in RPBoxScene function 802E6A00
  */
-BOOL RPSysEffectCreator::getUnk20() {
-    return ((unsigned int)-unk20 | unk20) >> 31;
+bool RPSysEffectCreator::getUnk20() const {
+    return unk20 != NULL;
 }
 
 /**

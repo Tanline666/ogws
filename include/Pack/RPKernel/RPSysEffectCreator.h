@@ -33,8 +33,8 @@ public:
      */
     void setFrameRate(f32 pFrameRate);
     void createEffect(u32 pGroupID, u16 pCalcRemain);
-    nw4r::ef::EffectSystem* getEffectSystem();
-    BOOL getUnk20();
+    bool isSlowEffect() const;
+    bool getUnk20() const;
     void stopAllEffect();
     void draw(const nw4r::ef::DrawInfo& pDrawInfo, u32 pGroupID_1, u32 pGroupID_2);
 
