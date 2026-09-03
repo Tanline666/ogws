@@ -44,6 +44,10 @@ public:
     void draw();
     void beginDrawScreen();
 
+    bool isOpen() const {
+        return mIsOpen;
+    }
+
 private:
 
     bool mResLoaded; // at 0x08
