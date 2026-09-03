@@ -12,43 +12,50 @@
 //! @{
 
 /**
- * @brief HBM library manager
+ * @brief Home menu manager
  */
 class RPSysHomeMenuMgr {
     RP_SINGLETON_DECL_EX(RPSysHomeMenuMgr);
 
 public:
-    void update();
+    //! This uses its own scheme instead of HBMSelectBtnNum for some reason
+    enum homeButtonState {
+        BUTTON_NONE, // used when inactive or returning to Wii Menu
+        BUTTON_OPEN,
+        BUTTON_CLOSE, // exiting Home Menu, but game still running
+        BUTTON_RESET,
+        BUTTON_MAX
+    };
 
-    bool isOpen() const {
-        return mIsOpen;
-    }
-
-    /**
-     * @brief Check if program is exiting/resetting and black out if true
-     *
-     * @return BOOL
-     */
-    BOOL startBlackOut();
-
-private:
-    struct unknownArcStruct {
-        void* mArcFile;
-        u32 UNK_0x04; // set to 1 if DVD error occurs in function 801A4E8C
+    struct fileAccessor {
+        void* mFile;
+        BOOL UNK_0x04; // set to 1 if DVD error occurs in function 801A4E8C
         u16 UNK_0x08;
         u16 UNK_0x0A;
     };
 
-    u8 mUNK_0x08;   // set to 1 at the end of LoadResource. bool?
-    bool mUNK_0x09; // checked in 801A4E8C to make sure error has not occurred
-    bool mUNK_0x0A; // set to true if no DVD error and scene change disabled
-    bool mIsOpen;
+    void drawScreen(fileAccessor* texture);
+    void init();
+    void LoadResource();
+    void updateOutside();
+    void clearMenu();
+    BOOL startBlackOut();
+    void update();
+    void draw();
+    void beginDrawScreen();
+
+private:
+
+    bool mResLoaded; // at 0x08
+    bool mUNK_0x09;
+    bool mUNK_0x0A;
+    bool mIsOpen; // at 0x0B
     u8 mUNK_0x0C;
-    u8 mUNK_0x0D;
-    u32 mUNK_0x10;
+    bool mBlackOutCalled; // at 0x0D
+    homeButtonState mButtonState; // at 0x10
     u16 mUNK_0x14;
     RPSysProjectLocal* mProjectLocal;
-    unknownArcStruct* mARC_0x1C;
+    fileAccessor* mFileAccessor;
     HBMDataInfo* mMenuDataInfo;
     u32 mUNK_0x24;
     u32 mUNK_0x28;
@@ -63,12 +70,14 @@ private:
     u32 mUNK_0x4C;
     f32 mUNK_0x50; // Set to 1.2 if the console is in PAL 50 Hz mode,
                    // otherwise 1.0
-    f32 mUNK_0x54;
-    f32 mUNK_0x58;
+    f32 mScaleX;
+    f32 mAdjScaleX;
     u32 mUNK_0x5C;
     const HBMControllerData* mHbmControllerData;
-    u8 mUNK_0x64[60];
-    KPADStatus mKpadStatus;
+    Vec2 mVec2;
+    u8 mUNK_0x6C[50];
+    KPADStatus mKpadStatus; //todo(texline) why is this duped?
+    u8 mPadding[396];
 };
 
 //! @}
