@@ -32,9 +32,10 @@ public:
         BOOL UNK_0x04; // set to 1 if DVD error occurs in function 801A4E8C
         u16 UNK_0x08;
         u16 UNK_0x0A;
+        void drawScreen();
     };
 
-    void drawScreen(fileAccessor* texture);
+    bool soundCallBack(int unk, u32 id);
     void init();
     void LoadResource();
     void updateOutside();

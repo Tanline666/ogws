@@ -28,7 +28,7 @@ void RPSysHomeMenuMgr::init() {
     VISetBlack(FALSE);
     mUNK_0x09 = FALSE; // @bug Initialized twice
     arcStruct = mFileAccessor;
-    arcStruct->UNK_0x04 = FALSE;
+    arcStruct->UNK_0x04 = 0;
     arcStruct->UNK_0x08 = 0;
     arcStruct->UNK_0x0A = 0;
 }
@@ -37,7 +37,7 @@ void RPSysHomeMenuMgr::init() {
  * @brief Loads the files used in the home menu itself.
  */
 void RPSysHomeMenuMgr::LoadResource() {
-    HBMDataInfo* menuDataInfo = mMenuDataInfo;
+    HBMDataInfo* menuDataInfo = (HBMDataInfo *)&mMenuDataInfo;
     EGG::Archive* staComArc = RP_GET_INSTANCE(RPSysResourceManager)
     ->GetStaticCommonArchive();
     EGG::Archive* staLocArc = RP_GET_INSTANCE(RPSysResourceManager)
@@ -289,9 +289,8 @@ void RPSysHomeMenuMgr::draw() {
 
 void RPSysHomeMenuMgr::beginDrawScreen() {
     if (mResLoaded) {
-        fileAccessor *localAccess = mFileAccessor;
-        if (localAccess->UNK_0x04) {
-            drawScreen(localAccess);
+        if (mFileAccessor->UNK_0x04) {
+            mFileAccessor->drawScreen();
         }
     }
 }
