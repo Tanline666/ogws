@@ -42,41 +42,41 @@ void RPSysHomeMenuMgr::LoadResource() {
     ->GetStaticCommonArchive();
     EGG::Archive* staLocArc = RP_GET_INSTANCE(RPSysResourceManager)
     ->GetStaticLocalArchive();
-    mFileAccessor->mFile = RP_GET_INSTANCE(RPSysResourceManager)
+    mFileAccessor->file = RP_GET_INSTANCE(RPSysResourceManager)
     ->GetFileFromArchive(staComArc, "/HomeMenu/homeBtnIcon.bti");
 
     switch (mProjectLocal->getLanguage()) {
-        case (RPSysProjectLocal::EArea_France): {
+        case RPSysProjectLocal::EArea_France: {
             menuDataInfo->region = SC_LANG_FR;
             menuDataInfo->layoutBuf = RP_GET_INSTANCE(RPSysResourceManager)
             ->GetFileFromArchive(staLocArc, "/HomeMenu/homeBtn_FRA.arc");
             break;
         }
-        case (RPSysProjectLocal::EArea_Germany): {
+        case RPSysProjectLocal::EArea_Germany: {
             menuDataInfo->region = SC_LANG_DE;
             menuDataInfo->layoutBuf = RP_GET_INSTANCE(RPSysResourceManager)
             ->GetFileFromArchive(staLocArc, "/HomeMenu/homeBtn_GER.arc");
             break;
         }
-        case (RPSysProjectLocal::EArea_Italy): {
+        case RPSysProjectLocal::EArea_Italy: {
             menuDataInfo->region = SC_LANG_IT;
             menuDataInfo->layoutBuf = RP_GET_INSTANCE(RPSysResourceManager)
             ->GetFileFromArchive(staLocArc, "/HomeMenu/homeBtn_ITA.arc");
             break;
         }
-        case (RPSysProjectLocal::EArea_Spain): {
+        case RPSysProjectLocal::EArea_Spain: {
             menuDataInfo->region = SC_LANG_SP;
             menuDataInfo->layoutBuf = RP_GET_INSTANCE(RPSysResourceManager)
             ->GetFileFromArchive(staLocArc, "/HomeMenu/homeBtn_SPA.arc");
             break;
         }
-        case (RPSysProjectLocal::EArea_Netherlands): {
+        case RPSysProjectLocal::EArea_Netherlands: {
             menuDataInfo->region = SC_LANG_NL;
             menuDataInfo->layoutBuf = RP_GET_INSTANCE(RPSysResourceManager)
             ->GetFileFromArchive(staLocArc, "/HomeMenu/homeBtn_NED.arc");
             break;
         }
-        case (RPSysProjectLocal::EArea_Japan): {
+        case RPSysProjectLocal::EArea_Japan: {
             menuDataInfo->region = SC_LANG_JP;
             menuDataInfo->layoutBuf = RP_GET_INSTANCE(RPSysResourceManager)
             ->GetFileFromArchive(staLocArc, "/HomeMenu/homeBtn.arc");
@@ -103,7 +103,7 @@ void RPSysHomeMenuMgr::LoadResource() {
 
     void *seFile = RP_GET_INSTANCE(RPSysResourceManager)
     ->GetFileFromArchive(staComArc, "/HomeMenu/HomeButtonSe.brsar");
-    RP_GET_INSTANCE(RPSndHomeMenuArcMgr)->setupArchive(seFile);
+    spHomeMenuArcMgr->setupArchive(seFile);
 
     if (mProjectLocal->getPack() == RPSysSceneCreator::EPackID_HealthPack) {
         HBMSetBlackOutColor(0xFF, 0xFF, 0xFF);
@@ -185,7 +185,7 @@ void RPSysHomeMenuMgr::clearMenu() {
         }
     }
     RPSysScene* sceneRP = RP_GET_INSTANCE(RPSysSceneMgr)->getCurrentSceneRP();
-    //! This function is stubbed out in rev 1
+    //! RPSysSceneMgr enables overriding pauseCallBack, but RPSysScene leaves it stubbed
     sceneRP->pauseCallBack(FALSE);
 }
 
@@ -241,7 +241,7 @@ void RPSysHomeMenuMgr::update() {
     if (mResLoaded) {
         switch (mButtonState) {
             /* Commenting out: code right now has severe bug that leads to 0% match
-            case (BUTTON_OPEN): {
+            case BUTTON_OPEN: {
                 mUNK_0x14++;
                 if (RP_GET_INSTANCE(RPSndSpeakerMgr)
                 ->isDisconnectAllFinished()) {
@@ -253,10 +253,10 @@ void RPSysHomeMenuMgr::update() {
                 }
             }
                 */
-            case (BUTTON_CLOSE): {
+            case BUTTON_CLOSE: {
                 clearMenu();
             }
-            case (BUTTON_RESET): {
+            case BUTTON_RESET: {
                 mButtonState = BUTTON_NONE;
                 mIsOpen = FALSE;
                 mUNK_0x0C = FALSE;
@@ -275,7 +275,7 @@ void RPSysHomeMenuMgr::update() {
             }
         }
     }
-    RP_GET_INSTANCE(RPSndHomeMenuArcMgr)->calc();
+    spHomeMenuArcMgr->calc();
 }
 
 /**

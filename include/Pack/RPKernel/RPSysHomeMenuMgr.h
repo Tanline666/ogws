@@ -1,8 +1,8 @@
 #ifndef RP_KERNEL_HOME_MENU_MGR_H
 #define RP_KERNEL_HOME_MENU_MGR_H
 #include <Pack/types_pack.h>
-#include <Pack/RPSystem/RPSysProjectLocal.h>
 
+#include <Pack/RPAudio.h>
 #include <Pack/RPSingleton.h>
 #include <Pack/RPSystem/RPSysProjectLocal.h>
 
@@ -28,7 +28,7 @@ public:
     };
 
     struct fileAccessor {
-        void* mFile;
+        void* file;
         BOOL UNK_0x04; // set to 1 if DVD error occurs in function 801A4E8C
         u16 UNK_0x08;
         u16 UNK_0x0A;
@@ -59,14 +59,14 @@ private:
     bool mBlackOutCalled; // at 0x0D
     homeButtonState mButtonState; // at 0x10
     u16 mUNK_0x14;
-    RPSysProjectLocal* mProjectLocal;
-    fileAccessor* mFileAccessor;
-    HBMDataInfo* mMenuDataInfo;
+    RPSysProjectLocal* mProjectLocal; // at 0x18
+    fileAccessor* mFileAccessor; // at 0x1C
+    HBMDataInfo* mMenuDataInfo; // at 0x20
     u32 mUNK_0x24;
     u32 mUNK_0x28;
     u32 mUNK_0x2C;
     void* mUNK_0x30;
-    void* mSoundCallback;
+    void* mSoundCallback; // at 0x34
     u32 mUNK_0x38;
     u32 mUNK_0x3C;
     u32 mUNK_0x40;
@@ -83,6 +83,8 @@ private:
     u8 mUNK_0x6C[50];
     KPADStatus mKpadStatus; //todo(texline) why is this duped?
     u8 mPadding[396];
+
+    static RPSndHomeMenuArcMgr* spHomeMenuArcMgr;
 };
 
 //! @}
