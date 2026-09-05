@@ -1,10 +1,17 @@
-#ifndef RP_SYSTEM_PAUSE_MENU_H
-#define RP_SYSTEM_PAUSE_MENU_H
+#ifndef RP_KERNEL_PAUSE_MENU_H
+#define RP_KERNEL_PAUSE_MENU_H
 
-#include <Pack/RPKernel.h>
+#include <nw4r/lyt.h>
+#include <Pack/types_pack.h>
 
 //! @addtogroup rp_kernel
 //! @{
+
+// Forward declarations
+class RPSysLayout;
+class RPSysLytBounding;
+class RPSysLytAnmObj;
+class RPSysLytTextBox;
 
 /**
  * @brief Library that handles pause menu layout.
