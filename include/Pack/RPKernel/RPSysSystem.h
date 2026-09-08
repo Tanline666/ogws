@@ -1,8 +1,10 @@
-#ifndef RP_SYSTEM_SYSTEM_H
-#define RP_SYSTEM_SYSTEM_H
+#ifndef RP_KERNEL_SYSTEM_H
+#define RP_KERNEL_SYSTEM_H
 #include <Pack/types_pack.h>
 
+#include <Pack/RPSystem/RPSysRenderMode.h>
 #include <Pack/RPSystem/RPSysSceneCreator.h>
+#include <Pack/RPSystem/RPSysRenderMode.h>
 
 #include <egg/core.h>
 
@@ -13,6 +15,63 @@
 
 //! @addtogroup rp_system
 //! @{
+
+/**
+ * @brief Pack Project configuration data. Derives from EGG::ConfigurationData.
+ */
+
+class RPSysConfigData {
+public:
+    explicit RPSysConfigData(u32 systemHeapSize)
+        : mSystemHeapSize(systemHeapSize) {}
+
+    virtual EGG::Video* GetVideo() {
+        return mVideo;
+    }
+    virtual EGG::Heap* GetSystemHeap() {
+        return mSystemHeap;
+    }
+    virtual EGG::Display* GetDisplay() {
+        return mDisplay;
+    }
+    virtual EGG::XfbManager* GetXfbMgr() {
+        return mXfbMgr;
+    }
+    virtual EGG::PerformanceView* GetPerfView() {
+        return mPerfView;
+    }
+    virtual EGG::SceneManager* GetSceneMgr() {
+        return mSceneMgr;
+    }
+    virtual EGG::IAudioMgr* GetAudioMgr() {
+        return mAudioMgr;
+    }
+    virtual void StubA() {}
+    virtual void StubB() {}
+
+private:
+    void* mMem1Start;
+    void* mMem1End;
+    void* mMem2Start;
+    void* mMem2End;
+    u32 mMemSize;
+    EGG::Heap* mRootHeapMem1;
+    EGG::Heap* mRootHeapMem2;
+    EGG::Heap* mRootHeapDebug;
+
+protected:
+    EGG::Heap* mSystemHeap;
+    EGG::Thread* mCreatorThread;
+    void* mCodeStart;
+    void* mCodeEnd;
+    u32 mSystemHeapSize;
+    EGG::Video* mVideo;
+    EGG::XfbManager* mXfbMgr;
+    EGG::Display* mDisplay;
+    EGG::PerformanceView* mPerfView;
+    EGG::SceneManager* mSceneMgr;
+    EGG::IAudioMgr* mAudioMgr;
+};
 
 /**
  * @brief Pack Project engine system
@@ -296,7 +355,7 @@ private:
     //! Task-end thread message for asynchronous NAND operations
     u32 mNandEndMessage; // at 0x40
     //! Task-end thread message for asynchronous disc operations
-    u32 mDvdEndMessage; // at 0x44
+    OSMessage mDvdEndMessage; // at 0x44
     //! Task-end thread message for asynchronous WiiConnect24 operations
     u32 mWc24EndMessage; // at 0x48
 
@@ -311,12 +370,12 @@ private:
     char* mpTimeStampString; // at 0x58
 
     //! Engine configuration
-    // static RPSysConfigData sConfigData;
+    static RPSysConfigData sConfigData;
 
     //! Active render mode
     static GXRenderModeObj* spRenderModeObj;
-    //! Render mode format @see RPSysRenderMode::EFormat
-    // static u32 sRenderModeFormat;
+    //! Render mode format
+    static RPSysRenderMode::EFormat sRenderModeFormat;
     //! @brief Time (in milliseconds) when the render mode was setup
     //! @remark This value is only non-zero when scan mode/TV format is changed
     //! and the system must wait.

@@ -3,7 +3,7 @@
 #include <Pack/types_pack.h>
 
 #include <Pack/RPSingleton.h>
-#include <Pack/RPSports.h>
+#include <Pack/RPSports/RPSportsCommon.h>
 #include <Pack/RPSystem/RPSysSceneCreator.h>
 
 #include <egg/core.h>
@@ -235,6 +235,13 @@ public:
      */
     EGG::Archive* GetStaticLocalArchive() const {
         return mpStaticLocalArchive;
+    }
+
+    /**
+     * @brief Gets the archive containing static layout assets for this pack
+     */
+    EGG::Archive* GetStaticLayoutArchive() const {
+        return mpStaticLayoutArchive;
     }
 
     /**
